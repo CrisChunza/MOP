@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/notes/notes",
+    "pages/cache1/cache1",
+    "pages/cache2/cache2",
+    "pages/detail/detail",
+    "pages/settings/settings"
+  ],
+  "window": {
+    "defaultTitle": "Demo Navegación y Cache",
+    "titleBarColor": "#1677FF",
+    "backgroundColor": "#F5F5F5",
+    "pullRefresh": false
+  },
+  "tabBar": {
+    "textColor": "#666666",
+    "selectedColor": "#1677FF",
+    "backgroundColor": "#FFFFFF",
+    "items": [
+      {
+        "pagePath": "pages/index/index",
+        "name": "Inicio",
+        "icon": "/images/home.png",
+        "activeIcon": "/images/home-active.png"
+      },
+      {
+        "pagePath": "pages/notes/notes",
+        "name": "Notas",
+        "icon": "/images/notes.png",
+        "activeIcon": "/images/notes-active.png"
+      },
+      {
+        "pagePath": "pages/settings/settings",
+        "name": "Configuración",
+        "icon": "/images/settings.png",
+        "activeIcon": "/images/settings-active.png"
+      }
+    ]
+  }
+}

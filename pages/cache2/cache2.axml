@@ -1,0 +1,60 @@
+<view class="container">
+  <view class="page-container">
+    <text class="title">Detalle del Caché</text>
+
+    <view a:if="{{selectedKey}}">
+      <text class="subtitle">Clave seleccionada</text>
+      <view class="key-pill">{{selectedKey}}</view>
+
+      <view class="value-box">
+        <text class="subtitle">Valor</text>
+        <text class="value-pre">{{selectedValue}}</text>
+      </view>
+
+      <button class="btn btn-danger" onTap="removeSelected">Eliminar esta clave</button>
+    </view>
+
+    <view a:else>
+      <text class="subtitle">Todas las claves</text>
+      <view a:for="{{all}}" a:key="{{item.key}}" class="value-box">
+        <view class="key-pill">{{item.key}}</view>
+        <text class="value-pre">{{item.value}}</text>
+      </view>
+    </view>
+
+    <view class="mt-16">
+      <button class="btn btn-secondary" onTap="goBack">← Volver</button>
+      <button class="btn btn-primary" onTap="goToCache1">Ir a Cache 1</button>
+    </view>
+
+     Panel de Pila 
+    <view class="stack-panel">
+      <view class="stack-header" onTap="toggleStackPanel">
+        <text class="text">📚 Pila de páginas ({{stackCurrent.length}})</text>
+        <text class="text">{{showStackPanel ? 'Ocultar' : 'Mostrar'}}</text>
+      </view>
+      <view a:if="{{showStackPanel}}">
+        <view class="stack-meta">
+          <text class="info-text">Última acción: {{stackMeta.action || '—'}}</text>
+          <text class="info-text">Hora: {{stackMeta.timestamp || '—'}}</text>
+          <text class="info-text">Cambio de profundidad: {{stackMeta.depthChange}}</text>
+          <text class="info-text">Agregadas: {{stackMeta.addedRoutes.join(', ') || '—'}}</text>
+          <text class="info-text">Removidas: {{stackMeta.removedRoutes.join(', ') || '—'}}</text>
+        </view>
+        <text class="subtitle">Actual</text>
+        <view a:for="{{stackCurrent}}" a:key="{{item.index}}" class="stack-item">
+          <text class="mono">[{{item.index}}] {{item.route}} {{item.fullPath}}</text>
+          <text class="mono">query: {{item.queryText}}</text>
+        </view>
+        <text class="subtitle">Anterior</text>
+        <view a:if="{{stackPrev.length === 0}}">
+          <text class="mono">—</text>
+        </view>
+        <view a:for="{{stackPrev}}" a:key="{{item.index}}" class="stack-item prev">
+          <text class="mono">[{{item.index}}] {{item.route}} {{item.fullPath}}</text>
+          <text class="mono">query: {{item.queryText}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

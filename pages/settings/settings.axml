@@ -1,0 +1,102 @@
+<view class="container">
+  <view class="page-container">
+    <text class="title">Configuración</text>
+
+    <view class="settings-section">
+      <text class="section-title">Apariencia</text>
+      <view class="setting-item">
+        <text class="setting-label">Tema</text>
+        <picker range="{{themes}}" value="{{selectedThemeIndex}}" onChange="onThemeChange">
+          <view class="picker-view">
+            <text class="setting-value">{{settings.theme}}</text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="setting-item">
+        <text class="setting-label">Tamaño de fuente</text>
+        <picker range="{{fontSizes}}" value="{{selectedFontSizeIndex}}" onChange="onFontSizeChange">
+          <view class="picker-view">
+            <text class="setting-value">{{settings.fontSize}}</text>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="settings-section">
+      <text class="section-title">Funcionalidad</text>
+      <view class="setting-item">
+        <text class="setting-label">Auto-guardar</text>
+        <switch checked="{{settings.autoSave}}" onChange="onAutoSaveChange" />
+      </view>
+      <view class="setting-item">
+        <text class="setting-label">Notificaciones</text>
+        <switch checked="{{settings.notifications}}" onChange="onNotificationsChange" />
+      </view>
+    </view>
+
+    <view class="settings-section">
+      <text class="section-title">Información de Cache</text>
+      <view class="cache-info">
+        <text class="info-text">Notas almacenadas: {{cacheStats.notesCount}}</text>
+        <text class="info-text">Configuración guardada: {{cacheStats.settingsSaved}}</text>
+        <text class="info-text">Última actualización: {{cacheStats.lastUpdate}}</text>
+      </view>
+      <button class="btn btn-secondary" onTap="refreshCacheStats">Actualizar Estadísticas</button>
+      <button class="btn btn-danger" onTap="clearAllCache">Limpiar Todo el Cache</button>
+    </view>
+
+    <view class="settings-section">
+      <text class="section-title">Navegación</text>
+      <button class="btn btn-primary" onTap="goToNotes">Ver Notas (my.navigateTo)</button>
+      <button class="btn btn-secondary" onTap="goBack">← Volver (my.navigateBack)</button>
+      <view class="navigation-info" a:if="{{fromPage}}">
+        <text class="info-text">Navegaste desde: {{fromPage}}</text>
+      </view>
+    </view>
+
+    <view class="settings-section">
+      <text class="section-title">Información del Sistema</text>
+      <view class="system-info">
+        <text class="info-text">Plataforma: {{systemInfo.platform}}</text>
+        <text class="info-text">Versión: {{systemInfo.version}}</text>
+        <text class="info-text">Idioma: {{systemInfo.language}}</text>
+        <text class="info-text">Ancho de pantalla: {{systemInfo.windowWidth}}px</text>
+        <text class="info-text">Alto de pantalla: {{systemInfo.windowHeight}}px</text>
+      </view>
+    </view>
+
+     Panel de Pila de Páginas 
+    <view class="stack-panel">
+      <view class="stack-header" onTap="toggleStackPanel">
+        <text class="text">📚 Pila de páginas ({{stackCurrent.length}})</text>
+        <text class="text">{{showStackPanel ? 'Ocultar' : 'Mostrar'}}</text>
+      </view>
+
+      <view a:if="{{showStackPanel}}">
+        <view class="stack-meta">
+          <text class="info-text">Última acción: {{stackMeta.action || '—'}}</text>
+          <text class="info-text">Hora: {{stackMeta.timestamp || '—'}}</text>
+          <text class="info-text">Cambio de profundidad: {{stackMeta.depthChange}}</text>
+          <text class="info-text">Agregadas: {{stackMeta.addedRoutes.join(', ') || '—'}}</text>
+          <text class="info-text">Removidas: {{stackMeta.removedRoutes.join(', ') || '—'}}</text>
+        </view>
+
+        <text class="subtitle">Actual</text>
+        <view a:for="{{stackCurrent}}" a:key="{{item.index}}" class="stack-item">
+          <text class="mono">[{{item.index}}] {{item.route}} {{item.fullPath}}</text>
+          <text class="mono">query: {{item.queryText}}</text>
+        </view>
+
+        <text class="subtitle">Anterior</text>
+        <view a:if="{{stackPrev.length === 0}}">
+          <text class="mono">—</text>
+        </view>
+        <view a:for="{{stackPrev}}" a:key="{{item.index}}" class="stack-item prev">
+          <text class="mono">[{{item.index}}] {{item.route}} {{item.fullPath}}</text>
+          <text class="mono">query: {{item.queryText}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

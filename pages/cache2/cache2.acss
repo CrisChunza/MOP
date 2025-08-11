@@ -1,0 +1,24 @@
+.value-box {
+  background: #fff;
+  border: 1rpx solid #eee;
+  border-radius: 10rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+}
+.value-pre {
+  font-family: Menlo, Consolas, 'SFMono-Regular', monospace;
+  font-size: 24rpx;
+  color: #333;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.key-pill {
+  display: inline-block;
+  padding: 6rpx 12rpx;
+  background: #e6f7ff;
+  color: #1677FF;
+  border: 1rpx solid #91d5ff;
+  border-radius: 6rpx;
+  margin-right: 8rpx;
+  margin-bottom: 8rpx;
+}

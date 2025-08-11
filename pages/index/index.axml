@@ -1,0 +1,79 @@
+<view class="container">
+  <view class="page-container">
+    <text class="title">Demo Navegación y Cache</text>
+    
+    <view class="mb-16">
+      <text class="subtitle">Información del Usuario</text>
+      <view class="list-item">
+        <text class="text">Nombre: {{userInfo.name || 'Usuario Demo'}}</text>
+        <text class="text">Última visita: {{lastVisit}}</text>
+        <text class="text">Visitas totales: {{visitCount}}</text>
+      </view>
+    </view>
+
+    <view class="mb-16">
+      <text class="subtitle">Navegación</text>
+      <button class="btn btn-primary" onTap="navigateToNotes">Ver Notas (my.navigateTo)</button>
+      <button class="btn btn-secondary" onTap="navigateToSettings">Configuración (my.navigateTo)</button>
+      <button class="btn btn-secondary" onTap="simulateRedirect">Simular redirect (my.redirectTo)</button>
+      <button class="btn btn-secondary" onTap="simulateReLaunch">Simular reLaunch (my.reLaunch)</button>
+    </view>
+
+    <view class="mb-16">
+      <text class="subtitle">Gestión de Cache</text>
+      <button class="btn btn-secondary" onTap="saveToCache">Guardar Datos en Cache</button>
+      <button class="btn btn-secondary" onTap="readFromCache">Leer Datos de Cache</button>
+      <button class="btn btn-danger" onTap="clearCache">Limpiar Cache</button>
+    </view>
+
+    <view class="mb-16" a:if="{{cacheData}}">
+      <text class="subtitle">Datos del Cache</text>
+      <view class="list-item">
+        <text class="mono">{{cacheData}}</text>
+      </view>
+    </view>
+
+    <view class="mb-16">
+      <text class="subtitle">Información del Sistema</text>
+      <view class="list-item">
+        <text class="text">Plataforma: {{systemInfo.platform}}</text>
+        <text class="text">Versión: {{systemInfo.version}}</text>
+        <text class="text">Ancho: {{systemInfo.windowWidth}}px</text>
+        <text class="text">Alto: {{systemInfo.windowHeight}}px</text>
+      </view>
+    </view>
+
+     Panel de Pila de Páginas 
+    <view class="stack-panel">
+      <view class="stack-header" onTap="toggleStackPanel">
+        <text class="text">📚 Pila de páginas ({{stackCurrent.length}})</text>
+        <text class="text">{{showStackPanel ? 'Ocultar' : 'Mostrar'}}</text>
+      </view>
+
+      <view a:if="{{showStackPanel}}">
+        <view class="stack-meta">
+          <text class="info-text">Última acción: {{stackMeta.action || '—'}}</text>
+          <text class="info-text">Hora: {{stackMeta.timestamp || '—'}}</text>
+          <text class="info-text">Cambio de profundidad: {{stackMeta.depthChange}}</text>
+          <text class="info-text">Agregadas: {{stackMeta.addedRoutes.join(', ') || '—'}}</text>
+          <text class="info-text">Removidas: {{stackMeta.removedRoutes.join(', ') || '—'}}</text>
+        </view>
+
+        <text class="subtitle">Actual</text>
+        <view a:for="{{stackCurrent}}" a:key="{{item.index}}" class="stack-item">
+          <text class="mono">[{{item.index}}] {{item.route}} {{item.fullPath}}</text>
+          <text class="mono">query: {{item.queryText}}</text>
+        </view>
+
+        <text class="subtitle">Anterior</text>
+        <view a:if="{{stackPrev.length === 0}}">
+          <text class="mono">—</text>
+        </view>
+        <view a:for="{{stackPrev}}" a:key="{{item.index}}" class="stack-item prev">
+          <text class="mono">[{{item.index}}] {{item.route}} {{item.fullPath}}</text>
+          <text class="mono">query: {{item.queryText}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

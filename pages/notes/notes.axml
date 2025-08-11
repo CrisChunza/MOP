@@ -1,0 +1,77 @@
+<view class="container">
+  <view class="page-container">
+    <view class="header">
+      <text class="title">Mis Notas</text>
+      <button class="btn btn-primary" onTap="createNote">+ Nueva Nota</button>
+    </view>
+
+    <view class="search-bar mb-16">
+      <input class="form-input" placeholder="Buscar notas..." value="{{searchText}}" onInput="onSearchInput" />
+    </view>
+
+    <view class="filter-tabs mb-16">
+      <view class="tab {{activeFilter === 'all' ? 'active' : ''}}" onTap="filterNotes" data-filter="all">Todas</view>
+      <view class="tab {{activeFilter === 'demo' ? 'active' : ''}}" onTap="filterNotes" data-filter="demo">Demo</view>
+      <view class="tab {{activeFilter === 'info' ? 'active' : ''}}" onTap="filterNotes" data-filter="info">Info</view>
+    </view>
+
+    <view a:if="{{loading}}" class="loading"><text>Cargando notas...</text></view>
+    <view a:elif="{{filteredNotes.length === 0}}" class="empty">
+      <text>No hay notas disponibles</text>
+      <button class="btn btn-secondary mt-16" onTap="createNote">Crear primera nota</button>
+    </view>
+
+    <view a:else>
+      <view class="note-item" a:for="{{filteredNotes}}" a:key="{{item.id}}" onTap="viewNote" data-id="{{item.id}}">
+        <view class="note-header">
+          <text class="note-title">{{item.title}}</text>
+          <text class="note-category">{{item.category}}</text>
+        </view>
+        <text class="note-content">{{item.content}}</text>
+        <text class="note-date">{{item.formattedDate}}</text>
+      </view>
+    </view>
+
+    <view class="navigation-demo mt-16">
+      <text class="subtitle">Navegación Demo</text>
+      <button class="btn btn-secondary" onTap="goBack">← Volver (my.navigateBack)</button>
+      <button class="btn btn-secondary" onTap="goToIndex">Ir a Inicio (my.switchTab)</button>
+      <button class="btn btn-primary mt-16" onTap="redirectToCache1">
+        Ir a Cache 1 (my.redirectTo)
+      </button>
+    </view>
+
+    <!-- Panel de Pila de Páginas -->
+    <view class="stack-panel">
+      <view class="stack-header" onTap="toggleStackPanel">
+        <text class="text">📚 Pila de páginas ({{stackCurrent.length}})</text>
+        <text class="text">{{showStackPanel ? 'Ocultar' : 'Mostrar'}}</text>
+      </view>
+
+      <view a:if="{{showStackPanel}}">
+        <view class="stack-meta">
+          <text class="info-text">Última acción: {{stackMeta.action || '—'}}</text>
+          <text class="info-text">Hora: {{stackMeta.timestamp || '—'}}</text>
+          <text class="info-text">Cambio de profundidad: {{stackMeta.depthChange}}</text>
+          <text class="info-text">Agregadas: {{stackMeta.addedRoutes.join(', ') || '—'}}</text>
+          <text class="info-text">Removidas: {{stackMeta.removedRoutes.join(', ') || '—'}}</text>
+        </view>
+
+        <text class="subtitle">Actual</text>
+        <view a:for="{{stackCurrent}}" a:key="{{item.index}}" class="stack-item">
+          <text class="mono">[{{item.index}}] {{item.route}} {{item.fullPath}}</text>
+          <text class="mono">query: {{item.queryText}}</text>
+        </view>
+
+        <text class="subtitle">Anterior</text>
+        <view a:if="{{stackPrev.length === 0}}">
+          <text class="mono">—</text>
+        </view>
+        <view a:for="{{stackPrev}}" a:key="{{item.index}}" class="stack-item prev">
+          <text class="mono">[{{item.index}}] {{item.route}} {{item.fullPath}}</text>
+          <text class="mono">query: {{item.queryText}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

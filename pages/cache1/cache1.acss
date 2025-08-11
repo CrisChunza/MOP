@@ -1,0 +1,30 @@
+/* Usa estilos globales; solo añade algunos específicos */
+.kv {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+.kv .k {
+  font-weight: 600;
+  color: #333;
+}
+.kv .v {
+  font-family: Menlo, Consolas, 'SFMono-Regular', monospace;
+  font-size: 24rpx;
+  color: #555;
+  word-break: break-all;
+}
+.key-item {
+  background: #fff;
+  border: 1rpx solid #eee;
+  border-radius: 10rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+}
+.meta {
+  background: #fafafa;
+  border: 1rpx solid #eee;
+  padding: 16rpx;
+  border-radius: 8rpx;
+  margin-bottom: 16rpx;
+}

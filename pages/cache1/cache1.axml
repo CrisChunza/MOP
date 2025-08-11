@@ -1,0 +1,69 @@
+<view class="container">
+  <view class="page-container">
+    <text class="title">Resumen del Caché</text>
+
+    <view class="meta">
+      <text class="info-text">Claves: {{info.keys.length}}</text>
+      <text class="info-text">Tamaño actual: {{info.currentSize}} KB</text>
+      <text class="info-text">Límite: {{info.limitSize}} KB</text>
+    </view>
+
+    <view class="mb-16">
+      <button class="btn btn-secondary" onTap="refresh">Refrescar</button>
+      <button class="btn btn-danger" onTap="clearTemp">Eliminar tempNoteCache</button>
+    </view>
+
+    <view a:if="{{keys.length === 0}}" class="empty">
+      <text>No hay claves en el caché</text>
+    </view>
+
+    <view a:for="{{keys}}" a:key="{{item.key}}" class="key-item" onTap="openDetail" data-key="{{item.key}}">
+      <view class="kv">
+        <text class="k">Clave:</text>
+        <text class="v">{{item.key}}</text>
+      </view>
+      <view class="kv mt-16">
+        <text class="k">Vista previa valor:</text>
+        <text class="v">{{item.preview}}</text>
+      </view>
+      <view class="kv mt-16">
+        <text class="k">Tipo:</text>
+        <text class="v">{{item.type}}</text>
+      </view>
+    </view>
+
+    <view class="mt-16">
+      <button class="btn btn-primary" onTap="goToCache2">Ir a Cache 2 (my.navigateTo)</button>
+    </view>
+
+     Panel de Pila 
+    <view class="stack-panel">
+      <view class="stack-header" onTap="toggleStackPanel">
+        <text class="text">📚 Pila de páginas ({{stackCurrent.length}})</text>
+        <text class="text">{{showStackPanel ? 'Ocultar' : 'Mostrar'}}</text>
+      </view>
+      <view a:if="{{showStackPanel}}">
+        <view class="stack-meta">
+          <text class="info-text">Última acción: {{stackMeta.action || '—'}}</text>
+          <text class="info-text">Hora: {{stackMeta.timestamp || '—'}}</text>
+          <text class="info-text">Cambio de profundidad: {{stackMeta.depthChange}}</text>
+          <text class="info-text">Agregadas: {{stackMeta.addedRoutes.join(', ') || '—'}}</text>
+          <text class="info-text">Removidas: {{stackMeta.removedRoutes.join(', ') || '—'}}</text>
+        </view>
+        <text class="subtitle">Actual</text>
+        <view a:for="{{stackCurrent}}" a:key="{{item.index}}" class="stack-item">
+          <text class="mono">[{{item.index}}] {{item.route}} {{item.fullPath}}</text>
+          <text class="mono">query: {{item.queryText}}</text>
+        </view>
+        <text class="subtitle">Anterior</text>
+        <view a:if="{{stackPrev.length === 0}}">
+          <text class="mono">—</text>
+        </view>
+        <view a:for="{{stackPrev}}" a:key="{{item.index}}" class="stack-item prev">
+          <text class="mono">[{{item.index}}] {{item.route}} {{item.fullPath}}</text>
+          <text class="mono">query: {{item.queryText}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

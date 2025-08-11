@@ -1,0 +1,86 @@
+<view class="container">
+  <view class="page-container">
+    <view class="header">
+      <text class="title">{{isEditing ? 'Editar Nota' : (isCreating ? 'Nueva Nota' : 'Detalle de Nota')}}</text>
+      <view class="header-actions">
+        <button class="btn btn-secondary" onTap="toggleEdit" a:if="{{!isCreating}}">{{isEditing ? 'Cancelar' : 'Editar'}}</button>
+        <button class="btn btn-primary" onTap="saveNote" a:if="{{isEditing || isCreating}}">Guardar</button>
+      </view>
+    </view>
+
+    <view a:if="{{loading}}" class="loading"><text>Cargando nota...</text></view>
+
+    <view a:else>
+      <view class="form-group">
+        <text class="form-label">Título</text>
+        <input class="form-input" placeholder="Título de la nota" value="{{note.title}}" disabled="{{!isEditing && !isCreating}}" onInput="onTitleInput" />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">Categoría</text>
+        <picker range="{{categories}}" value="{{selectedCategoryIndex}}" disabled="{{!isEditing && !isCreating}}" onChange="onCategoryChange">
+          <view class="picker-view">
+            <input class="form-input" placeholder="Seleccionar categoría" value="{{note.category}}" disabled />
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">Contenido</text>
+        <textarea class="form-textarea" placeholder="Escribe el contenido de tu nota aquí..." value="{{note.content}}" disabled="{{!isEditing && !isCreating}}" onInput="onContentInput" maxlength="1000" />
+      </view>
+
+      <view class="note-info" a:if="{{!isCreating}}">
+        <text class="info-text">Creado: {{note.formattedDate}}</text>
+        <text class="info-text">ID: {{note.id}}</text>
+      </view>
+
+      <view class="actions mt-16">
+        <button class="btn btn-danger" onTap="deleteNote" a:if="{{!isCreating}}">Eliminar Nota</button>
+        <button class="btn btn-secondary" onTap="goBack">← Volver</button>
+      </view>
+
+      <view class="cache-demo mt-16">
+        <text class="subtitle">Demo de Cache</text>
+        <button class="btn btn-secondary" onTap="saveToCache">Guardar en Cache Temporal</button>
+        <button class="btn btn-secondary" onTap="loadFromCache">Cargar desde Cache Temporal</button>
+        <view class="cache-info" a:if="{{cacheInfo}}">
+          <text class="info-text">Cache: {{cacheInfo}}</text>
+        </view>
+      </view>
+    </view>
+
+     Panel de Pila de Páginas 
+    <view class="stack-panel">
+      <view class="stack-header" onTap="toggleStackPanel">
+        <text class="text">📚 Pila de páginas ({{stackCurrent.length}})</text>
+        <text class="text">{{showStackPanel ? 'Ocultar' : 'Mostrar'}}</text>
+      </view>
+
+      <view a:if="{{showStackPanel}}">
+        <view class="stack-meta">
+          <text class="info-text">Última acción: {{stackMeta.action || '—'}}</text>
+          <text class="info-text">Hora: {{stackMeta.timestamp || '—'}}</text>
+          <text class="info-text">Cambio de profundidad: {{stackMeta.depthChange}}</text>
+          <text class="info-text">Agregadas: {{stackMeta.addedRoutes.join(', ') || '—'}}</text>
+          <text class="info-text">Removidas: {{stackMeta.removedRoutes.join(', ') || '—'}}</text>
+        </view>
+
+        <text class="subtitle">Actual</text>
+        <view a:for="{{stackCurrent}}" a:key="{{item.index}}" class="stack-item">
+          <text class="mono">[{{item.index}}] {{item.route}} {{item.fullPath}}</text>
+          <text class="mono">query: {{item.queryText}}</text>
+        </view>
+
+        <text class="subtitle">Anterior</text>
+        <view a:if="{{stackPrev.length === 0}}">
+          <text class="mono">—</text>
+        </view>
+        <view a:for="{{stackPrev}}" a:key="{{item.index}}" class="stack-item prev">
+          <text class="mono">[{{item.index}}] {{item.route}} {{item.fullPath}}</text>
+          <text class="mono">query: {{item.queryText}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,318 @@
+// pages/index/index.axml
+<view>
+  <!-- Información del Sistema -->
+  <!-- Existing code here -->
+  <view class="settings-section mt-16">
+    <text class="subtitle">Laboratorio de Navegación (esta página)</text>
+    <button class="btn btn-secondary" onTap="nav_switchTab_home">switchTab → Inicio</button>
+    <button class="btn btn-primary" onTap="nav_navigateTo_cache1">navigateTo → Cache 1</button>
+    <button class="btn btn-secondary" onTap="nav_redirectTo_cache2">redirectTo → Cache 2</button>
+    <button class="btn btn-secondary" onTap="nav_reLaunch_home">reLaunch → Inicio</button>
+    <button class="btn btn-secondary" onTap="nav_navigateBack">navigateBack ←</button>
+  </view>
+  <!-- Stack-panel or other existing code here -->
+</view>
+
+// pages/notes/notes.axml
+<view>
+  <!-- Existing code here -->
+  <view class="settings-section mt-16">
+    <text class="subtitle">Laboratorio de Navegación (esta página)</text>
+    <button class="btn btn-secondary" onTap="nav_switchTab_home">switchTab → Inicio</button>
+    <button class="btn btn-primary" onTap="nav_navigateTo_cache1">navigateTo → Cache 1</button>
+    <button class="btn btn-secondary" onTap="nav_redirectTo_cache2">redirectTo → Cache 2</button>
+    <button class="btn btn-secondary" onTap="nav_reLaunch_home">reLaunch → Inicio</button>
+    <button class="btn btn-secondary" onTap="nav_navigateBack">navigateBack ←</button>
+  </view>
+  <!-- Stack-panel or other existing code here -->
+</view>
+
+// pages/detail/detail.axml
+<view>
+  <!-- Existing code here -->
+  <view class="settings-section mt-16">
+    <text class="subtitle">Laboratorio de Navegación (esta página)</text>
+    <button class="btn btn-secondary" onTap="nav_switchTab_home">switchTab → Inicio</button>
+    <button class="btn btn-primary" onTap="nav_navigateTo_cache1">navigateTo → Cache 1</button>
+    <button class="btn btn-secondary" onTap="nav_redirectTo_cache2">redirectTo → Cache 2</button>
+    <button class="btn btn-secondary" onTap="nav_reLaunch_home">reLaunch → Inicio</button>
+    <button class="btn btn-secondary" onTap="nav_navigateBack">navigateBack ←</button>
+  </view>
+  <!-- Stack-panel or other existing code here -->
+</view>
+
+// pages/settings/settings.axml
+<view>
+  <!-- Existing code here -->
+  <view class="settings-section mt-16">
+    <text class="subtitle">Laboratorio de Navegación (esta página)</text>
+    <button class="btn btn-secondary" onTap="nav_switchTab_home">switchTab → Inicio</button>
+    <button class="btn btn-primary" onTap="nav_navigateTo_cache1">navigateTo → Cache 1</button>
+    <button class="btn btn-secondary" onTap="nav_redirectTo_cache2">redirectTo → Cache 2</button>
+    <button class="btn btn-secondary" onTap="nav_reLaunch_home">reLaunch → Inicio</button>
+    <button class="btn btn-secondary" onTap="nav_navigateBack">navigateBack ←</button>
+  </view>
+  <!-- Stack-panel or other existing code here -->
+</view>
+
+// pages/cache1/cache1.axml
+<view>
+  <!-- Existing code here -->
+  <view class="settings-section mt-16">
+    <text class="subtitle">Laboratorio de Navegación (esta página)</text>
+    <button class="btn btn-secondary" onTap="nav_switchTab_home">switchTab → Inicio</button>
+    <button class="btn btn-primary" onTap="nav_navigateTo_cache1">navigateTo → Cache 1</button>
+    <button class="btn btn-secondary" onTap="nav_redirectTo_cache2">redirectTo → Cache 2</button>
+    <button class="btn btn-secondary" onTap="nav_reLaunch_home">reLaunch → Inicio</button>
+    <button class="btn btn-secondary" onTap="nav_navigateBack">navigateBack ←</button>
+  </view>
+  <!-- Stack-panel or other existing code here -->
+</view>
+
+// pages/cache2/cache2.axml
+<view>
+  <!-- Existing code here -->
+  <view class="settings-section mt-16">
+    <text class="subtitle">Laboratorio de Navegación (esta página)</text>
+    <button class="btn btn-secondary" onTap="nav_switchTab_home">switchTab → Inicio</button>
+    <button class="btn btn-primary" onTap="nav_navigateTo_cache1">navigateTo → Cache 1</button>
+    <button class="btn btn-secondary" onTap="nav_redirectTo_cache2">redirectTo → Cache 2</button>
+    <button class="btn btn-secondary" onTap="nav_reLaunch_home">reLaunch → Inicio</button>
+    <button class="btn btn-secondary" onTap="nav_navigateBack">navigateBack ←</button>
+  </view>
+  <!-- Stack-panel or other existing code here -->
+</view>
+
+// pages/index/index.js
+Page({
+  // Existing code here
+  nav_switchTab_home() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('switchTab', { to: '/pages/index/index', from: from });
+    my.switchTab({ url: '/pages/index/index' });
+  },
+  nav_navigateTo_cache1() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('navigateTo', { to: '/pages/cache1/cache1', from: from });
+    my.navigateTo({ url: '/pages/cache1/cache1' });
+  },
+  nav_redirectTo_cache2() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('redirectTo', { to: '/pages/cache2/cache2', from: from });
+    my.redirectTo({ url: '/pages/cache2/cache2' });
+  },
+  nav_reLaunch_home() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('reLaunch', { to: '/pages/index/index', from: from });
+    my.reLaunch({ url: '/pages/index/index' });
+  },
+  nav_navigateBack() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('navigateBack', { from: from });
+    my.navigateBack({
+      fail: function() {
+        my.switchTab({ url: '/pages/index/index' });
+      }
+    });
+  }
+});
+
+// pages/notes/notes.js
+Page({
+  // Existing code here
+  nav_switchTab_home() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('switchTab', { to: '/pages/index/index', from: from });
+    my.switchTab({ url: '/pages/index/index' });
+  },
+  nav_navigateTo_cache1() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('navigateTo', { to: '/pages/cache1/cache1', from: from });
+    my.navigateTo({ url: '/pages/cache1/cache1' });
+  },
+  nav_redirectTo_cache2() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('redirectTo', { to: '/pages/cache2/cache2', from: from });
+    my.redirectTo({ url: '/pages/cache2/cache2' });
+  },
+  nav_reLaunch_home() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('reLaunch', { to: '/pages/index/index', from: from });
+    my.reLaunch({ url: '/pages/index/index' });
+  },
+  nav_navigateBack() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('navigateBack', { from: from });
+    my.navigateBack({
+      fail: function() {
+        my.switchTab({ url: '/pages/index/index' });
+      }
+    });
+  }
+});
+
+// pages/detail/detail.js
+Page({
+  // Existing code here
+  nav_switchTab_home() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('switchTab', { to: '/pages/index/index', from: from });
+    my.switchTab({ url: '/pages/index/index' });
+  },
+  nav_navigateTo_cache1() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('navigateTo', { to: '/pages/cache1/cache1', from: from });
+    my.navigateTo({ url: '/pages/cache1/cache1' });
+  },
+  nav_redirectTo_cache2() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('redirectTo', { to: '/pages/cache2/cache2', from: from });
+    my.redirectTo({ url: '/pages/cache2/cache2' });
+  },
+  nav_reLaunch_home() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('reLaunch', { to: '/pages/index/index', from: from });
+    my.reLaunch({ url: '/pages/index/index' });
+  },
+  nav_navigateBack() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('navigateBack', { from: from });
+    my.navigateBack({
+      fail: function() {
+        my.switchTab({ url: '/pages/index/index' });
+      }
+    });
+  }
+});
+
+// pages/settings/settings.js
+Page({
+  // Existing code here
+  nav_switchTab_home() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('switchTab', { to: '/pages/index/index', from: from });
+    my.switchTab({ url: '/pages/index/index' });
+  },
+  nav_navigateTo_cache1() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('navigateTo', { to: '/pages/cache1/cache1', from: from });
+    my.navigateTo({ url: '/pages/cache1/cache1' });
+  },
+  nav_redirectTo_cache2() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('redirectTo', { to: '/pages/cache2/cache2', from: from });
+    my.redirectTo({ url: '/pages/cache2/cache2' });
+  },
+  nav_reLaunch_home() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('reLaunch', { to: '/pages/index/index', from: from });
+    my.reLaunch({ url: '/pages/index/index' });
+  },
+  nav_navigateBack() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('navigateBack', { from: from });
+    my.navigateBack({
+      fail: function() {
+        my.switchTab({ url: '/pages/index/index' });
+      }
+    });
+  }
+});
+
+// pages/cache1/cache1.js
+Page({
+  // Existing code here
+  nav_switchTab_home() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('switchTab', { to: '/pages/index/index', from: from });
+    my.switchTab({ url: '/pages/index/index' });
+  },
+  nav_navigateTo_cache1() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('navigateTo', { to: '/pages/cache1/cache1', from: from });
+    my.navigateTo({ url: '/pages/cache1/cache1' });
+  },
+  nav_redirectTo_cache2() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('redirectTo', { to: '/pages/cache2/cache2', from: from });
+    my.redirectTo({ url: '/pages/cache2/cache2' });
+  },
+  nav_reLaunch_home() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('reLaunch', { to: '/pages/index/index', from: from });
+    my.reLaunch({ url: '/pages/index/index' });
+  },
+  nav_navigateBack() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('navigateBack', { from: from });
+    my.navigateBack({
+      fail: function() {
+        my.switchTab({ url: '/pages/index/index' });
+      }
+    });
+  }
+});
+
+// pages/cache2/cache2.js
+Page({
+  // Existing code here
+  nav_switchTab_home() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('switchTab', { to: '/pages/index/index', from: from });
+    my.switchTab({ url: '/pages/index/index' });
+  },
+  nav_navigateTo_cache1() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('navigateTo', { to: '/pages/cache1/cache1', from: from });
+    my.navigateTo({ url: '/pages/cache1/cache1' });
+  },
+  nav_redirectTo_cache2() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('redirectTo', { to: '/pages/cache2/cache2', from: from });
+    my.redirectTo({ url: '/pages/cache2/cache2' });
+  },
+  nav_reLaunch_home() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('reLaunch', { to: '/pages/index/index', from: from });
+    my.reLaunch({ url: '/pages/index/index' });
+  },
+  nav_navigateBack() {
+    const appInst = getApp();
+    var from = (this.$page && this.$page.fullPath) || (this.route || '');
+    appInst.snapshotStack('navigateBack', { from: from });
+    my.navigateBack({
+      fail: function() {
+        my.switchTab({ url: '/pages/index/index' });
+      }
+    });
+  }
+});
